@@ -5,7 +5,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const appApi = createApi({
     reducerPath: "appApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: "http://localhost:5001",
+        baseUrl: "https://letxchatt.herokuapp.com/",
     }),
 
     endpoints: (builder) => ({
@@ -52,16 +52,16 @@ const appApi = createApi({
                 body: payload,
             })
         }),
-    //     forUser: builder.mutation({
-    //         query: ({id, ...payload}) => ({
-    //             url: '/users/reset/',
-    //             method: 'PUT',
-    //             body: payload,
-    //         })
-    //     }),
+        forgotUser: builder.mutation({
+            query: ({...payload}) => ({
+                url: '/users/reset/',
+                method: 'PUT',
+                body: payload,
+            })
+        }),
     }),
 });
 
-export const { useSignupUserMutation, useLoginUserMutation, useLogoutUserMutation, useEditUserMutation, useResetUserMutation } = appApi;
+export const { useSignupUserMutation, useLoginUserMutation, useLogoutUserMutation, useEditUserMutation, useResetUserMutation, useForgotUserMutation } = appApi;
 
 export default appApi;

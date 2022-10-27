@@ -3,24 +3,12 @@ import { Button, Col, Form, Row,Modal } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { AppContext } from "../context/appContext";
 import "./MessageForm.css";
-// import { useParams } from "react-router";
-
-
-
-
-
-
-
-
 
 function MessageForm() {
     const [message, setMessage] = useState("");
     const [file, setFile] = useState("");
     const [url, setUrl] = useState("");
     const [modalShow, setModalShow] = useState(false);
-
-    // let { id } = useParams();
-
 
     const user = useSelector((state) => state.user);
     const { socket, currentRoom, setMessages, messages, privateMemberMsg } = useContext(AppContext);
@@ -40,7 +28,7 @@ function MessageForm() {
             </Modal.Header>
             <Modal.Body>
                 <div className='d-flex align-items-center mb-3 preview'>
-                <img width={"100%"} src={url} />
+                <img width={"100%"} src={url} alt='' />
 
                 </div>
               
@@ -118,7 +106,7 @@ function video(url) {
     return (<video width={"100%"} height={200} alt={url} src={url} />)   
 }
 function application(url) {
-    return (<a download target="_blank" href={url}>download</a>)   
+    return (<a download target="_blank" rel="noreferrer" href={url}>download</a>)   
 }
 
 function checkType(type) {
@@ -159,9 +147,25 @@ function checkType(type) {
                                             <p className="message-sender">{sender._id === user?._id ? "You" : sender.name}</p>
                                         </div>
                                         {type !== "text"? checkType(type) === "image"?image(file):checkType(type) === "video"?video(file):application(file):null}
-                                        <p className="message-content">{content}</p>
-                                        <p className="message-timestamp-left">{time}</p>
+                                        <div className='message-content'>
+                                    <div>
+                                    {  
+                                        content.replace('\\', '/').substring(0, 8) === "uploads/"?
+                                        content.replace('\\', '/').substring(content.length - 3, content.length) === 'mp4'?
+                                        <video 
+                                        style={{maxWidth:'200px'}}
+                                        src={`https://letxchatt.herokuapp.com/${content}`} 
+                                        alt='video' type="video/mp4" controls/>
+                                        :
+                                        <img 
+                                        style={{maxWidth:'200px'}}
+                                        src={`https://letxchatt.herokuapp.com/${content}`} alt='img'/>
+                                        :
+                                        <p>{content}</p>  
+                                    }
+                                    <p className='message-timestamp-left'>{time}</p> 
                                     </div>
+                                    </div></div>
                                 </div>
                             ))}
                         </div>
