@@ -42,7 +42,7 @@ function Sidebar() {
     });
 
     function getRooms() {
-        fetch("https://letxchatt.herokuapp.com/rooms")
+        fetch("https://letxchat-ed-em.herokuapp.com/rooms")
             .then((res) => res.json())
             .then((data) => setRooms(data));
     }

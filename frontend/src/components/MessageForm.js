@@ -154,12 +154,12 @@ function checkType(type) {
                                         content.replace('\\', '/').substring(content.length - 3, content.length) === 'mp4'?
                                         <video 
                                         style={{maxWidth:'200px'}}
-                                        src={`https://letxchatt.herokuapp.com/${content}`} 
+                                        src={`https://letxchat-ed-em.herokuapp.com/${content}`} 
                                         alt='video' type="video/mp4" controls/>
                                         :
                                         <img 
                                         style={{maxWidth:'200px'}}
-                                        src={`https://letxchatt.herokuapp.com/${content}`} alt='img'/>
+                                        src={`https://letxchat-ed-em.herokuapp.com/${content}`} alt='img'/>
                                         :
                                         <p>{content}</p>  
                                     }
