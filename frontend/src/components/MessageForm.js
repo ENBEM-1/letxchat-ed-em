@@ -69,7 +69,7 @@ function MessageForm() {
         setMessages(roomMessages);
     });
     function selectFile(e) {
-        //    console.log(e.target.file[0]);
+           console.log(e.target.file[0]);
         setMessage(e.target.files[0].name);
         setFile(e.target.files[0]);
         }

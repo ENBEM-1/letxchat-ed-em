@@ -9,34 +9,16 @@ import { socket } from '../context/appContext';
 function Forgot() {
 
     const [email, setEmail] = useState("");
-//    const [resetUser] = useResetUserMutation();
-
-//    let { id } = useParams();
-
 
     function handleForgot(e) {
         e.preventDefault();
 
-        // resetUser({id, email}).then(({data}) => {
             socket.emit('send email-link');
-        // })
-
        alert('Email sent : check your mail');
-
-
-
     }
 
     function handleResend(e) {
-
-        
-        // <Button variant="new" type="submit" style={{borderColor: 'teal',color:'white', borderRadius:'20px', backgroundColor:'teal'}} onClick={handleResend}>
-        //                         Resend
-        //                     </Button>
-
-
         alert('check email:spam for reset link');
-            // localStorage.setItem('email', "enochboispon@gmail.com");
     }
 
     return (
@@ -53,9 +35,7 @@ function Forgot() {
                             <Button id='button-me' variant="primary" type="submit" onChange={handleResend}>
                                 Request reset link 
                             </Button>
-                            
                         </div>
-
                     </Form>
                 </Col>
             </Row>

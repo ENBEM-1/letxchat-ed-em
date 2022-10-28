@@ -113,7 +113,6 @@ function EditUser() {
               <Form.Control type="email" onChange={(e) => setEmail(e.target.value)} value={email} />
               </Form.Group>
           
-              
               <div className='button-space'>
                 <Button variant="primary" type="submit" onClick={handleEditUser}>
                 {uploadingImg || isLoading ? 'Saving changes...' : 'Save Changes'}
