@@ -6,6 +6,7 @@ import { addNotifications, resetNotifications } from "../features/userSlice";
 import "./Sidebar.css";
 
 function Sidebar() {
+
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
     const { socket, setMembers, members, setCurrentRoom, setRooms, privateMemberMsg, rooms, setPrivateMemberMsg, currentRoom } = useContext(AppContext);
@@ -64,11 +65,6 @@ function Sidebar() {
     if (!user) {
         return <></>;
     }
-
-    // function onHover(e) {
-    //     e.target.display(<ListGroup/>)
-    // }
-
 
     return (
         <>

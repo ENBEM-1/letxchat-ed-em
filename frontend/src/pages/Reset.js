@@ -4,10 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { useResetUserMutation } from "../services/appApi";
 import { useParams } from "react-router";
 
-
-
-
-
 function Reset() {
 
     const [password, setPassword] = useState("");

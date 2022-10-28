@@ -7,6 +7,7 @@ import logo from "../assets/logo.png";
 import './Navigation.css';
 
 function Navigation() {
+    
     const user = useSelector((state) => state.user);
     const [logoutUser] = useLogoutUserMutation();
 

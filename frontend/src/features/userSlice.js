@@ -28,8 +28,6 @@ export const userSlice = createSlice({
         builder.addMatcher(appApi.endpoints.logoutUser.matchFulfilled, () => null);
        //reset user password
         builder.addMatcher(appApi.endpoints.resetUser.matchFulfilled, (state, { payload }) => payload);
-
-
     },
 });
 

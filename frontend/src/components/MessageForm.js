@@ -3,9 +3,6 @@ import { Button, Col, Form, Row,Modal } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { AppContext } from "../context/appContext";
 import "./MessageForm.css";
-// import { useParams } from "react-router";
-
-
 
 function MessageForm() {
     const [message, setMessage] = useState("");
@@ -13,12 +10,10 @@ function MessageForm() {
     const [url, setUrl] = useState("");
     const [modalShow, setModalShow] = useState(false);
 
-    // let { id } = useParams();
-
-
     const user = useSelector((state) => state.user);
     const { socket, currentRoom, setMessages, messages, privateMemberMsg } = useContext(AppContext);
     const messageEndRef = useRef(null);
+    
     function MyVerticallyCenteredModal(props) {
         return (
           <Modal
