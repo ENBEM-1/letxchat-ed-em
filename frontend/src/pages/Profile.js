@@ -110,7 +110,7 @@ function EditUser() {
 
               <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" onChange={(e) => setEmail(e.target.value)} value={email} />
+              <Form.Control type="email" onChange={(e) => setEmail(e.target.value)} value={email}  disabled/>
               </Form.Group>
           
               <div className='button-space'>
