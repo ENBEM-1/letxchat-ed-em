@@ -4,15 +4,23 @@ import { useNavigate } from 'react-router-dom';
 import { useResetUserMutation } from "../services/appApi";
 import { useParams } from "react-router";
 
+
+
+
+
 function Reset() {
 
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState('');
 
+
     let { id } = useParams();
+
 
     const navigate = useNavigate();
     const [resetUser, { isLoading }] = useResetUserMutation();
+
+
 
     function handleReset(e) {
         e.preventDefault();
@@ -24,6 +32,7 @@ function Reset() {
             }
           });
     }
+
 
     function handleCancel (e) {
         navigate('/chat');

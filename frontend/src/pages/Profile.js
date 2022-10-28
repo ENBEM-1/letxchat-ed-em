@@ -110,9 +110,10 @@ function EditUser() {
 
               <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" onChange={(e) => setEmail(e.target.value)} value={email}  disabled/>
+              <Form.Control type="email" onChange={(e) => setEmail(e.target.value)} value={email} disabled />
               </Form.Group>
           
+              
               <div className='button-space'>
                 <Button variant="primary" type="submit" onClick={handleEditUser}>
                 {uploadingImg || isLoading ? 'Saving changes...' : 'Save Changes'}
