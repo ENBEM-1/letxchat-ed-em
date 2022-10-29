@@ -43,7 +43,7 @@ function Sidebar() {
     });
 
     function getRooms() {
-        fetch("http://letxchat--back-end.herokuapp.com/rooms")
+        fetch("https://letxchat--back-end.herokuapp.com/rooms")
             .then((res) => res.json())
             .then((data) => setRooms(data));
     }
