@@ -85,7 +85,7 @@ function Sidebar() {
                             rooms.filter((room) => room.name === currentRoom).map(room => room.name)
                         }
                     </ListGroup.Item>
-                    <ListGroup.Item><span>Created By:</span> { }
+                    <ListGroup.Item><span>Created By:</span> { user.name}
                         {
                             rooms.filter((room) => room.name === currentRoom).map(room => room.createdBy)
                         }
