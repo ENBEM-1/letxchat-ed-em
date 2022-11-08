@@ -80,7 +80,7 @@ function Sidebar() {
                 {/*Current chatroom info*/}
                 <h2>Chatroom Info</h2>
                 <ListGroup>
-                    <ListGroup.Item><span>Current Chatroom:  </span>{ }
+                    <ListGroup.Item><span>Current Chatroom:  </span>{ currentRoom}
                         {
                             rooms.filter((room) => room.name === currentRoom).map(room => room.name)
                         }

@@ -4,17 +4,17 @@ import { useSelector } from "react-redux";
 import { AppContext } from "../context/appContext";
 import "./MessageForm.css";
 
+
 function MessageForm() {
-    
     const [message, setMessage] = useState("");
     const [file, setFile] = useState("");
     const [url, setUrl] = useState("");
     const [modalShow, setModalShow] = useState(false);
+    const [type] = useState('');
 
     const user = useSelector((state) => state.user);
     const { socket, currentRoom, setMessages, messages, privateMemberMsg } = useContext(AppContext);
     const messageEndRef = useRef(null);
-    
     function MyVerticallyCenteredModal(props) {
         return (
           <Modal
@@ -25,12 +25,12 @@ function MessageForm() {
           >
             <Modal.Header closeButton>
               <Modal.Title id="contained-modal-title-vcenter">
-                image preview
+                Preview
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <div className='d-flex align-items-center mb-3 preview'>
-                <img width={"100%"} src={url} alt=''/>
+               {type === 'image' ? <img width={"100%"} src={url}  alt='' />: <video width={"100%"} src={url} controls/>}
 
                 </div>
               
@@ -64,7 +64,6 @@ function MessageForm() {
         messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }
 
-
     const todayDate = getFormattedDate();
 
     socket.off("room-messages").on("room-messages", (roomMessages) => {
@@ -85,7 +84,7 @@ function MessageForm() {
         const time = today.getHours() + ":" + minutes;
         const roomId = currentRoom;
         console.log(file);
-        socket.emit("message-room", roomId, message, user, time, todayDate,file,
+        socket.emit("message-room", roomId, message, user, time, todayDate, file,
        file ?  file.type :'text');
 
         setMessage("");
@@ -93,9 +92,6 @@ function MessageForm() {
 
     }
 
-
-
-    
 function image(url) {
     return (<img onClick={() => {
         setModalShow(true);
@@ -105,10 +101,14 @@ function image(url) {
 }
 
 function video(url) {
-    return (<video width={"100%"} height={200} alt={url} src={url} />)   
+    return (<video onClick={() => {
+        setModalShow(true);
+        setUrl(url);
+    }} width={"100%"} height={200} alt={url} src={url} />    
+    ) 
 }
 function application(url) {
-    return (<a download target="_blank" href={url} rel='noreferrer'>download</a>)   
+    return (<a download target="_blank" rel="noreferrer" href={url} ><Button><i className="fas fa-download" style={{display: 'inline-flex'}}></i></Button></a>)   
 }
 
 function checkType(type) {
@@ -160,7 +160,6 @@ function checkType(type) {
             </div>
             <Form onSubmit={handleSubmit}>
                 <Row>
-                    
                     <Col md={10}>
                         <Form.Group>
                             <Form.Control id="text-box" type="text" placeholder="Your message" disabled={!user} value={message} onChange={(e) => setMessage(e.target.value)}></Form.Control>
@@ -169,18 +168,22 @@ function checkType(type) {
                     </Col>
                     <Col md={1}>
                         <input onChange={selectFile} type='file'/>
-                            <Button type="submit" style={{ width: "100%", backgroundColor: "#f88a2a", borderColor: '#f88a2a' }} disabled={!user}>
+                            <Button type="submit" style={{ width: "80%", backgroundColor: "#f88a2a", borderColor: '#f88a2a' }} disabled={!user}>
                             <i class="fa fa-upload"></i>
                         </Button>
                     </Col>
-                    <Col md={1}>
+                    {/* <Col md={1}>
                         <Button type="submit" style={{ width: "100%", backgroundColor: "#f88a2a", borderColor: '#f88a2a' }} disabled={!user}>
+                        <i class="fas fa-microphone"></i>
+                        </Button>
+                    </Col> */}
+                    <Col md={1}>
+                        <Button type="submit" style={{ width: "80%", backgroundColor: "#f88a2a", borderColor: '#f88a2a' }} disabled={!user}>
                             <i className="fas fa-paper-plane"></i>
                         </Button>
                     </Col>
                 </Row>
             </Form>
-
             <MyVerticallyCenteredModal
         show={false}
         onHide={() => setModalShow(false)}
