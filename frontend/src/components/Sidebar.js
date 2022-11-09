@@ -10,6 +10,8 @@ function Sidebar() {
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
     const { socket, setMembers, members, setCurrentRoom, setRooms, privateMemberMsg, rooms, setPrivateMemberMsg, currentRoom } = useContext(AppContext);
+    const admin ='EDDIE-DJIRACKOR';
+    const dateCreated = '01/10/22';
 
     function joinRoom(room, isPublic = true) {
         if (!user) {
@@ -85,12 +87,12 @@ function Sidebar() {
                             rooms.filter((room) => room.name === currentRoom).map(room => room.name)
                         }
                     </ListGroup.Item>
-                    <ListGroup.Item><span>Created By:</span> { user.name}
+                    <ListGroup.Item><span>Created By:</span> {admin}
                         {
                             rooms.filter((room) => room.name === currentRoom).map(room => room.createdBy)
                         }
                     </ListGroup.Item>
-                    <ListGroup.Item><span>Date Created:</span> { }
+                    <ListGroup.Item><span>Date Created:</span> {dateCreated}
                         {
                             rooms.filter((room) => room.name === currentRoom).map(room => room.createdAt).toString().slice(0, 10)
                         }
