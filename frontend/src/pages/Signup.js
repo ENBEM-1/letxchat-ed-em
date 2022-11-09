@@ -57,6 +57,7 @@ function Signup() {
     signupUser({ name, email, username, staffId, password, picture: url }).then(({ data }) => {
       if (data) {
         console.log(data);
+        alert("Sign up successful");
         navigate("/chat");
       }
     });
