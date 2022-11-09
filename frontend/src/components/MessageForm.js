@@ -15,6 +15,8 @@ function MessageForm() {
     const user = useSelector((state) => state.user);
     const { socket, currentRoom, setMessages, messages, privateMemberMsg } = useContext(AppContext);
     const messageEndRef = useRef(null);
+
+
     function MyVerticallyCenteredModal(props) {
         return (
           <Modal
@@ -30,7 +32,7 @@ function MessageForm() {
             </Modal.Header>
             <Modal.Body>
                 <div className='d-flex align-items-center mb-3 preview'>
-               {type === 'image' ? <img width={"100%"} src={url}  alt='' />: <video width={"100%"} src={url} controls/>}
+               {type === 'image' ? <img width={"100%"} src={url}  alt='' />: <video width={"100%"} src={url} />}
 
                 </div>
               
@@ -104,7 +106,7 @@ function video(url) {
     return (<video onClick={() => {
         setModalShow(true);
         setUrl(url);
-    }} width={"100%"} height={200} alt={url} src={url} />    
+    }} width={"100%"} height={200} alt={url} src={url} controls/>    
     ) 
 }
 function application(url) {
